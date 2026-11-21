@@ -6,7 +6,7 @@ A versão **0.1.1** reúne nove modos de análise, que cobrem diagnóstico, vali
 
 ## Como acessar no ChatGPT
 
-É preciso ter acesso ao plugin na conta correta. Quem já recebeu orientação privada de acesso encontra os passos para selecionar o Radar no guia. Quem chegou pelo GitHub pode consultar toda a documentação e consultar o proprietário sobre acesso. [Guia de acesso](docs/instalacao.md)
+É preciso ter acesso ao plugin na conta correta. Na conta do proprietário, abrir a página do Radar e escolher **Try in chat** iniciou uma conversa com ele selecionado. Quem chegou pelo GitHub pode consultar toda a documentação e consultar o proprietário sobre acesso. [Guia de acesso](docs/instalacao.md)
 
 ## Fazer o primeiro teste
 

@@ -1,17 +1,17 @@
 # Como acessar e testar o Radar no ChatGPT
 
-Em **21 de novembro de 2026**, o criador confirmou o nome **Radar Startups e Tecnologias Emergentes**, a versão **0.1.1** e a criação privada em conta pessoal. O percurso de seleção abaixo segue a documentação do ChatGPT. Uma ativação por segundo perfil e a execução dos três exemplos na interface permanecem sem verificação. Os rótulos podem variar. [Orientação da OpenAI sobre plugins](https://help.openai.com/pt-br/articles/20001256-plugins-in-chatgpt)
+Em **21 de novembro de 2026**, abrimos o ChatGPT na web na conta pessoal do proprietário. A lista **Installed** mostrava o Radar. Na sua página, conferimos o nome **Radar Startups e Tecnologias Emergentes**, a versão **0.1.1**, uma habilidade e o botão **Try in chat**. Esse botão abriu uma conversa nova com o nome do plugin selecionado. A interface observada estava em inglês. O acesso por um segundo perfil continua sem teste. [Orientação da OpenAI sobre plugins](https://help.openai.com/pt-br/articles/20001256-plugins-in-chatgpt)
 
 ## Já tenho acesso ao plugin
 
 1. Entre no ChatGPT com a conta autorizada. Confira o perfil e o espaço ativo. Se você recebeu um convite por canal privado, abra-o nessa mesma conta. O primeiro sinal é ver o nome completo do Radar na página do plugin.
-2. Para localizar pelo diretório, abra **Plugins** e procure o nome completo entre os pessoais ou instalados. Se a página oferecer **Instalar plugin**, use essa opção. Ao terminar, confira se o Radar aparece entre os plugins instalados.
-3. Abra uma conversa nova, digite `@` e selecione **Radar Startups e Tecnologias Emergentes** entre os resultados. Confira o nome selecionado no campo da mensagem antes de enviar.
+2. Abra **Plugins** e procure o nome completo nas listas **Pessoais** ou **Instalados**. Na conta verificada, ele já aparecia em **Installed**. Se seu perfil autorizado mostrar **Instalar plugin**, a documentação da OpenAI orienta a concluir essa etapa e conferir a lista de instalados.
+3. Na página do Radar, escolha **Try in chat**. No teste do proprietário, o ChatGPT abriu o campo da mensagem com o nome do Radar e uma pergunta de exemplo. Confira o nome selecionado antes de enviar. Se preferir começar em uma conversa vazia, a documentação da OpenAI também orienta a selecionar o plugin por `@`.
 4. Cole a pergunta de caixa abaixo. O teste de aceitação combina duas observações: o nome do Radar selecionado na conversa e uma resposta com as duas contas corretas.
 
 > Tenho R$ 240 mil em caixa. Recebo R$ 30 mil por mês e pago R$ 70 mil. Se contratar por mais R$ 20 mil mensais hoje, quanto tempo de caixa perco?
 
-Antes da contratação, R$ 70 mil menos R$ 30 mil dão consumo de R$ 40 mil/mês. R$ 240 mil divididos por R$ 40 mil/mês dão **6 meses**. Depois da contratação, R$ 90 mil menos R$ 30 mil dão R$ 60 mil/mês. O mesmo caixa dura **4 meses**. A perda é de **2 meses**, se a despesa começar agora e os demais fluxos continuarem constantes. [Outros exemplos](exemplos.md)
+Antes da contratação, R$ 70 mil menos R$ 30 mil dão consumo de R$ 40 mil/mês. R$ 240 mil divididos por R$ 40 mil/mês dão **6 meses**. Depois da contratação, R$ 90 mil menos R$ 30 mil dão R$ 60 mil/mês. O mesmo caixa dura **4 meses**. O Radar retornou essas duas contas na conversa de teste. A perda é de **2 meses**, se a despesa começar agora e os demais fluxos continuarem constantes. [Outros exemplos](exemplos.md)
 
 ## Encontrei o projeto no GitHub
 
@@ -21,7 +21,7 @@ Antes da contratação, R$ 70 mil menos R$ 30 mil dão consumo de R$ 40 mil/mês
 
 ## Sou responsável pelo plugin
 
-1. Na conta em que o plugin foi criado, confira o nome e a versão no registro da versão vigente no criador. Se a tela de uso omitir a versão, consulte os metadados do plugin na ferramenta de criação. A referência deste guia é **0.1.1**.
+1. Na conta em que o plugin foi criado, abra a página do Radar e procure **Information → Version**. Esse campo mostrou a versão instalada durante a conferência. O proprietário também pode consultar a versão vigente na ferramenta de criação. A referência deste guia é **0.1.1**.
 2. Depois de atualizar, confira no mesmo registro qual versão ficou ativa. Abra uma conversa nova e selecione o Radar pelo nome.
 3. Repita o teste de caixa e os outros dois exemplos. Registre, em privado, versão, data, nome selecionado, pergunta, resposta observada e se o critério foi atendido. Se o Radar estiver acessível para outra pessoa autorizada, peça que ela repita a seleção e a primeira conta no próprio perfil.
 4. Atualize a documentação pública quando a versão e o percurso forem confirmados. Use exemplos fictícios no registro público de resultados.
