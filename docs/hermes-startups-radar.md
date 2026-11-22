@@ -4,7 +4,7 @@ Registro atualizado em **22 de novembro de 2026**.
 
 Este guia acompanha uma instalação local do Hermes para usar os métodos do Radar Startups e Tecnologias Emergentes. A instalação foi feita no Ubuntu do WSL, separada do Codex, do Camaleão e do Hermes existente na VPS.
 
-O runtime foi instalado, o login próprio foi confirmado e o modelo foi selecionado. **A primeira resposta do Hermes ainda não foi testada.** A base privada ainda não foi transferida para o PC, e o novo agente ainda não foi criado na plataforma Radar.
+O runtime foi instalado, o login próprio foi confirmado e o modelo foi selecionado. **Ainda não houve uma resposta bem-sucedida do Hermes por inferência.** Uma sonda offline conferiu esquemas, e uma tentativa curta de resposta parou na validação local. A base privada ainda não foi transferida para o PC, e o novo agente ainda não foi criado na plataforma Radar.
 
 ## O que foi confirmado
 
@@ -25,7 +25,9 @@ As observações do PC vieram das saídas do Ubuntu fornecidas durante a instala
 | Modelo salvo | `gpt-6.2-sol`, via OpenAI Codex |
 | Raciocínio salvo | `medium` |
 | Radar existente | Escuta local na porta `3100` confirmada |
-| Nova chamada ao modelo Hermes | Pendente |
+| Sonda offline dos esquemas | Retornou apenas `clarify`, sem chamar o modelo |
+| Tentativa curta de resposta | Recusada localmente com `invalid_params` |
+| Resposta por inferência no perfil normal | Pendente |
 | Novo agente na plataforma Radar | Pendente |
 
 A mensagem de autenticação confirma o login. Ela não comprova cota disponível, elegibilidade do modelo escolhido ou execução completa do Camaleão. Selecionar um modelo também não comprova que ele respondeu.
@@ -350,7 +352,21 @@ Resultados observados antes da seleção do modelo:
 | Provedores de reserva | `[]` |
 | Concorrência | `1` |
 
-Isso confere a configuração. **A lista efetiva de ferramentas no runtime ainda precisa ser inspecionada.**
+Isso confere a configuração lida naquele momento. **A lista de ferramentas efetivamente apresentada ao modelo em uma sessão normal ainda precisa ser inspecionada.**
+
+### Sonda offline posterior
+
+Uma sonda executada no Python 3.14.9 do ambiente gerenciado retornou os seguintes campos:
+
+| Campo observado | Resultado |
+| --- | --- |
+| `tools` | `["clarify"]` |
+| `model_called` | `false` |
+| `guard_refusals` | Uma ocorrência de `socket.__new__` bloqueada |
+
+O traço `family=10`, `type=1`, `proto=0` é compatível com uma checagem IPv6 durante importação. Ele não identifica o pacote responsável nem prova conexão ou envio de dados.
+
+Essa é uma conferência dos esquemas sob bloqueios de inspeção. O audit hook Python não substitui isolamento no sistema operacional, não cobre todo código nativo e não comprova o comportamento de uma sessão normal. A ativação do ambiente também pode gravar locks, leases e cache próprios.
 
 ## 7. Fazer um login próprio
 
@@ -408,6 +424,18 @@ Na instalação acompanhada, o percurso foi:
 
 O terminal salvou `gpt-6.2-sol`, via OpenAI Codex, com raciocínio `medium`. A presença no menu e o salvamento não comprovam acesso real ou cota. O próximo passo é uma chamada pequena e controlada.
 
+### Tentativa curta de resposta
+
+Uma tentativa de resposta curta, com pedido de `OK`, recebeu `invalid_params` durante a preparação local. O comando orientado pelo assistente usava `HERMES_SAFE_MODE=1` sem informar um modelo explicitamente.
+
+A leitura do mesmo commit identificou que essa variável ativa um caminho de bypass que não carrega a configuração do perfil. Sem um modelo explícito nesse caminho, a validação `_bypass_policy`, em [gateway/session_local.py](https://github.com/ofelipepeixoto/hermes-agent/blob/d236cbe069577679a2d3b60c42bd58e1fe879ca1/gateway/session_local.py), recusa a sessão localmente antes da chamada ao modelo.
+
+O operador executou o comando que recebeu. A correção é do procedimento orientado pelo assistente, sem patch no runtime. O resultado não estabelece falha da assinatura, das credenciais ou da conta.
+
+Os comandos de configuração e autenticação acima registram o percurso executado. Não reutilizar `HERMES_SAFE_MODE=1` como se ele preservasse o perfil de uma sessão normal. Antes da próxima chamada, conferir o carregamento do perfil e os controles de plugins, hooks e MCP, mantendo os limites de tempo, turnos e ferramentas.
+
+A chamada corrigida com o perfil normal ainda não foi executada. O primeiro resultado por inferência continua pendente.
+
 ## 9. Transferir a base privada
 
 O repositório público contém o guia. Ele não contém a habilidade completa nem os documentos empresariais originais.
@@ -429,8 +457,8 @@ Os métodos estudados não substituem os dados reais de cada startup. Exemplos e
 
 | Próxima etapa | Critério de conclusão |
 | --- | --- |
-| Inspeção das ferramentas | Conferir o conjunto efetivo no runtime, além do arquivo de configuração |
-| Primeiro teste | Responder uma mensagem curta pela rota de assinatura, com limites e ferramentas restritos |
+| Inspeção das ferramentas | A sonda offline conferiu esquemas; falta conferir as ferramentas da sessão normal |
+| Primeiro teste | Repetir a chamada com o perfil normal e controles verificados; obter uma resposta pela assinatura |
 | Base no WSL | Transferir e conferir a árvore e os hashes |
 | Consulta ao acervo | Recuperar referências corretas e reconhecer fontes ausentes |
 | Casos fictícios | Conferir LTV, caixa, compromisso pago, projeção versus tração e plano de execução |
@@ -440,7 +468,7 @@ Os métodos estudados não substituem os dados reais de cada startup. Exemplos e
 | Tarefa na plataforma | Resposta registrada e disposição final confirmada |
 | Recuperação | Restaurar backup em outro diretório, preservando a instalação ativa |
 
-Não há resultado de inferência, teste de modelo real, novo agente Radar, restauração ou isolamento integral confirmado nesta etapa.
+Houve uma tentativa curta, recusada na validação local. Não há resposta por inferência, novo agente Radar, restauração ou isolamento integral confirmado nesta etapa.
 
 O Docker estava instalado, mas seu servidor não foi confirmado no diagnóstico. Bubblewrap foi encontrado, porém seu funcionamento como isolamento do processo inteiro ainda não foi testado.
 
@@ -448,7 +476,8 @@ O Docker estava instalado, mas seu servidor não foi confirmado no diagnóstico.
 
 - Perfis, nomes de agentes e pastas separadas organizam o estado. Não criam isolamento do sistema operacional.
 - Docker usado apenas pelo terminal não isola automaticamente todos os caminhos do processo Hermes.
-- `toolsets: ["clarify"]` é a configuração observada. Ainda falta a prova das ferramentas efetivas.
+- `toolsets: ["clarify"]` é a configuração observada, e a sonda offline retornou esse esquema. Falta confirmar o conjunto de uma sessão normal.
+- O bloqueio Python da sonda é um controle de inspeção, não uma sandbox do sistema operacional.
 - O toolset `skills` também inclui escrita. Não tratá-lo como somente leitura.
 - Permissões de leitura aplicadas pelo mesmo dono podem ser revertidas por esse dono.
 - Desligar memória não elimina sessões, histórico, logs, cache e propostas pendentes.
