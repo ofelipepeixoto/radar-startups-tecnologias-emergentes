@@ -18,7 +18,9 @@ Mantidos os fluxos, o prazo cai de seis para quatro meses. Confira as duas conta
 
 ## Hermes Startups Radar no WSL
 
-Em 22/11/2026, a instalação local do runtime Hermes foi concluída em uma pasta separada. O login próprio pela assinatura ChatGPT/Codex foi confirmado e o modelo `gpt-6.2-sol` foi salvo com raciocínio `medium`. A primeira chamada ao modelo, a transferência da base e a criação e o teste do agente no Radar/Paperclip ainda estão pendentes.
+Em 22/11/2026, a instalação local do runtime Hermes foi concluída em uma pasta separada. O login próprio pela assinatura ChatGPT/Codex foi confirmado e o modelo `gpt-6.2-sol` foi salvo com raciocínio `medium`.
+
+Uma sonda offline retornou apenas o esquema de `clarify`, sem chamar o modelo. Uma tentativa curta de resposta recebeu `invalid_params` na validação local: o comando orientado pelo assistente usava um modo que não carregava o perfil escolhido. A primeira resposta gerada pelo modelo, a transferência da base e a criação e o teste do agente no Radar/Paperclip continuam pendentes. Esse erro local não permite concluir que exista uma falha da assinatura.
 
 O [guia de instalação local](docs/hermes-startups-radar.md) registra os comandos, a recuperação das falhas de clonagem e DNS e os limites observados. Clonar este repositório continua baixando apenas a documentação. A habilidade e seu acervo permanecem privados.
 
