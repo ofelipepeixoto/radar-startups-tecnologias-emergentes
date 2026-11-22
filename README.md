@@ -15,3 +15,14 @@ Com **Radar Startups e Tecnologias Emergentes** selecionado na conversa, copie e
 > Tenho R$ 240 mil em caixa. Recebo R$ 30 mil por mês e pago R$ 70 mil. Se contratar por mais R$ 20 mil mensais hoje, quanto tempo de caixa perco?
 
 Mantidos os fluxos, o prazo cai de seis para quatro meses. Confira as duas contas na resposta e o nome do plugin na conversa. Também há pedidos de validação comercial e de avaliação de um serviço com IA. [Três exemplos para testar](docs/exemplos.md)
+
+## Hermes Startups Radar no WSL
+
+Em 22/11/2026, a instalação local do runtime Hermes foi concluída em uma pasta separada. O login próprio pela assinatura ChatGPT/Codex foi confirmado e o modelo `gpt-6.2-sol` foi salvo com raciocínio `medium`. A primeira chamada ao modelo, a transferência da base e a criação e o teste do agente no Radar/Paperclip ainda estão pendentes.
+
+O [guia de instalação local](docs/hermes-startups-radar.md) registra os comandos, a recuperação das falhas de clonagem e DNS e os limites observados. Clonar este repositório continua baixando apenas a documentação. A habilidade e seu acervo permanecem privados.
+
+- [Histórico de construção](CHANGELOG.md)
+- [Roadmap e critérios para avançar](ROADMAP.md)
+
+Os resultados dos exemplos no ChatGPT não comprovam o funcionamento da adaptação ao Hermes.
