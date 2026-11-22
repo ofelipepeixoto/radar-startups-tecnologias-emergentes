@@ -5,7 +5,7 @@ Atualizado em 22/11/2026. Este roteiro distingue a instalação local do runtime
 | Marco | Situação | Critério de conclusão |
 | --- | --- | --- |
 | H0: instalar e autenticar | Concluído no WSL, com saídas fornecidas pelo operador | Fonte fixada, executável, controles selecionados e login próprio conferidos; modelo salvo |
-| H1: primeiro teste de modelo | Pendente | Conferir ferramentas efetivas e obter resposta curta pela assinatura, sem fallback para API |
+| H1: primeiro teste de modelo | Parcial: sonda offline concluída; tentativa curta recusada localmente | Conferir ferramentas da sessão normal e obter resposta curta pela assinatura, sem fallback para API |
 | H2: usar a base privada | Pendente no PC | Importar os 44 arquivos com integridade conferida e responder com referências realmente consultadas |
 | H3: limitar e recuperar | Pendente | Provar isolamento do processo inteiro, recusa de escrita fora do escopo e restauração em diretório separado |
 | H4: conectar ao Radar | Pendente | Confirmar adaptador local compatível, criar um coordenador e concluir uma tarefa no estado correto |
@@ -27,13 +27,17 @@ Essas observações vieram das saídas do terminal do operador. Não houve acess
 
 ## H1: provar a primeira chamada
 
-1. Inspecionar as ferramentas disponibilizadas pelo runtime, além do arquivo de configuração.
-2. Conferir provedor e modelo após o assistente de seleção.
-3. Testar uma resposta curta com limites de tempo e turnos.
+1. Registrar a sonda offline já realizada e conferir as ferramentas da sessão normal, além do arquivo de configuração.
+2. Conferir o carregamento do perfil, o provedor, o modelo e os controles de plugins, hooks e MCP.
+3. Repetir a resposta curta com o perfil normal e limites de tempo e turnos, após verificar esses controles.
 4. Registrar sucesso ou erro da conta. Se o plano ou a cota não atender, deixar o bloqueio explícito.
 5. Manter a ausência de fallback pago e conferir também as rotas auxiliares.
 
 Não assumir elegibilidade de todos os modelos exibidos no seletor.
+
+A sonda offline retornou o esquema de `clarify`, sem chamada ao modelo. O controle Python bloqueou uma tentativa de criação de socket; isso não constitui isolamento do processo inteiro nem confirmação do comportamento da sessão normal.
+
+A tentativa curta executada usou um comando inadequado orientado pelo assistente: `HERMES_SAFE_MODE=1` desviava do carregamento do perfil, e a sessão foi recusada localmente com `invalid_params` por falta de modelo explícito nesse caminho. A leitura do commit explica a recusa anterior à chamada ao modelo. Não atribuir esse resultado à assinatura ou ao operador. A nova chamada ainda está pendente.
 
 ## H2: transferir o método
 

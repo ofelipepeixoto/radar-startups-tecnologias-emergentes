@@ -36,9 +36,23 @@ As saídas do terminal foram executadas e fornecidas pelo operador. O assistente
 | Modelo salvo | `gpt-6.2-sol`, via OpenAI Codex |
 | Raciocínio salvo | `medium` |
 
-Os controles foram lidos após a instalação e antes da seleção do modelo. A nova conferência após essa seleção ainda está pendente.
+Os controles da tabela foram lidos após a instalação e antes da seleção do modelo. A sonda posterior descrita abaixo analisou os esquemas sob bloqueios de inspeção. A conferência completa de uma sessão normal do perfil continua pendente.
 
 A confirmação do Codex é uma conferência da autenticação armazenada. Não equivale a um novo teste completo do Camaleão no Paperclip.
+
+### Sonda offline dos esquemas
+
+Uma sonda no Python 3.14.9 do ambiente gerenciado retornou `tools: ["clarify"]` e `model_called: false`. O controle de inspeção registrou uma tentativa `socket.__new__` bloqueada.
+
+O traço com `family=10`, `type=1` e `proto=0` é compatível com um teste IPv6 durante uma importação. Ele não identifica o pacote responsável nem demonstra conexão ou envio de dados. O audit hook Python empregado nessa inspeção não é uma sandbox do sistema operacional e não comprova o conjunto de ferramentas de uma sessão normal.
+
+### Tentativa curta e ajuste do procedimento
+
+Uma tentativa de resposta curta, com pedido de `OK`, terminou com `invalid_params` na preparação local. A leitura do mesmo commit identificou que `HERMES_SAFE_MODE=1` ativa o caminho de bypass, que não carrega a configuração do perfil. Sem um modelo explícito nesse caminho, `_bypass_policy`, em `gateway/session_local.py`, recusa a sessão por falta de modelo local antes de uma chamada ao modelo.
+
+O comando inadequado foi orientado pelo assistente e executado conforme as instruções. A correção necessária é no procedimento de execução; não foi aplicado um patch no runtime. Esse resultado não estabelece falha da assinatura ou das credenciais.
+
+A próxima tentativa deve usar o perfil normal, depois de verificar os controles de plugins, hooks e MCP e os limites de execução. Essa chamada ainda não foi executada. Não há resposta por inferência comprovada até este registro.
 
 ### Base privada preparada
 
@@ -52,8 +66,8 @@ O conteúdo privado, os pacotes de transferência e seus metadados pessoais não
 
 Ainda não foram concluídos:
 
-- Chamada de modelo pelo Hermes.
-- Inspeção das ferramentas efetivamente apresentadas ao modelo.
+- Resposta obtida por inferência pelo Hermes.
+- Inspeção das ferramentas efetivamente apresentadas ao modelo em uma sessão normal.
 - Transferência e consulta da base no WSL.
 - Aplicação da identidade do coordenador e avaliação das cinco frentes propostas.
 - Criação e teste de um agente Hermes no Radar/Paperclip.
