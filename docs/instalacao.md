@@ -35,4 +35,10 @@ Antes da contratação, R$ 70 mil menos R$ 30 mil dão consumo de R$ 40 mil/mês
 | Tenho acesso confirmado, mas a busca ou o compositor não mostra o Radar. | Confira a instalação no diretório, abra uma conversa nova e tente no ChatGPT na web. Verifique a disponibilidade para sua conta e interface. | O proprietário confirma a versão vigente. Em espaço gerenciado, o administrador verifica a disponibilidade. Em conta pessoal, o suporte da OpenAI pode investigar falhas da interface. |
 | Obtive o valor correto, mas não vejo o nome do Radar. | Abra uma conversa nova, selecione o plugin explicitamente e repita a pergunta. | Você pode refazer o teste e conferir a seleção antes do envio. |
 
-[Voltar ao início](../README.md)
+## Uso local com Hermes
+
+O percurso acima trata do plugin no ChatGPT. Para a instalação separada no Ubuntu/WSL2, consulte o [guia Hermes Startups Radar](hermes-startups-radar.md). A instalação do runtime e o login foram conferidos; a importação da base e os testes com modelo ainda estão pendentes.
+
+A assinatura, a elegibilidade dos modelos e seus limites precisam ser confirmados na conta usada. Não cadastrar chave API nem habilitar fallback pago como parte deste piloto.
+
+[Roadmap](../ROADMAP.md) · [Histórico](../CHANGELOG.md) · [Voltar ao início](../README.md)
